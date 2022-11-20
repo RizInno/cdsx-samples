@@ -6,7 +6,7 @@
 	"license": "UNLICENSED",
 	"private": true,
 	"dependencies": {
-		"@rizing/cds-extension": "^0.6.2",
+		"@rizing/cds-extension": "^0.6.3",
 		"@sap-cloud-sdk/http-client": "^2.11.0",
 		"@sap/cds": "^6",
 		"express": "^4"
@@ -23,32 +23,10 @@
 	"engines": {
 		"node": "^16.15"
 	},
-	"eslintConfig": {
-		"extends": "eslint:recommended",
-		"env": {
-			"es2020": true,
-			"node": true,
-			"jest": true,
-			"mocha": true
-		},
-		"globals": {
-			"SELECT": true,
-			"INSERT": true,
-			"UPDATE": true,
-			"DELETE": true,
-			"CREATE": true,
-			"DROP": true,
-			"CDL": true,
-			"CQL": true,
-			"CXL": true,
-			"cds": true
-		},
-		"rules": {
-			"no-console": "off",
-			"require-atomic-updates": "off"
-		}
-	},
 	"cds": {
+		"features": {
+			"fetch_csrf": true
+		},
 		"requires": {
 			"API_EQUIPMENT": {
 				"kind": "odata-v2",
