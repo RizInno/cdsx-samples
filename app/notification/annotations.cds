@@ -1,88 +1,119 @@
 using NotificationService as service from '../../srv/notification';
 
-annotate service.MaintenanceNotification with @(UI.LineItem : [
-    {
-        $Type : 'UI.DataField',
-        Label : 'MaintenanceNotification',
-        Value : MaintenanceNotification,
-    },
-    {
-        $Type : 'UI.DataField',
-        Label : 'NotificationType',
-        Value : NotificationType,
-    },
-    {
-        $Type : 'UI.DataField',
-        Label : 'NotificationText',
-        Value : NotificationText,
-    },
-    {
-        $Type : 'UI.DataField',
-        Label : 'FunctionalLocation',
-        Value : FunctionalLocation,
-    },
-    {
-        $Type : 'UI.DataField',
-        Label : 'CompanyCode',
-        Value : CompanyCode,
-    },
-]);
-
 annotate service.MaintenanceNotification with @(
-    UI.FieldGroup #GeneratedGroup1 : {
-        $Type : 'UI.FieldGroupType',
-        Data  : [
+    Capabilities : {DeleteRestrictions : {Deletable : false}},
+    UI           : {
+        HeaderInfo                     : {
+            TypeName       : '{i18n>maintenanceNotification}',
+            TypeNamePlural : '{i18n>maintenanceNotifications}',
+            Title          : {Value : NotificationText},
+            Description    : {Value : MaintenanceNotification}
+        },
+        LineItem                       : [
             {
                 $Type : 'UI.DataField',
-                Label : 'MaintenanceNotification',
-                Value : MaintenanceNotification,
+                Value : MaintenanceNotification
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'NotificationType',
-                Value : NotificationType,
+                Value : NotificationType
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'NotificationText',
-                Value : NotificationText,
+                Value : NotificationText
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'FunctionalLocation',
-                Value : FunctionalLocation,
+                Value : FunctionalLocation
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'CompanyCode',
-                Value : CompanyCode,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'ReportedByUser',
-                Value : ReportedByUser,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'ReporterFullName',
-                Value : ReporterFullName,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'CreationDateTime',
-                Value : CreationDateTime,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'LastChangeDateTime',
-                Value : LastChangeDateTime,
-            },
+                Value : CompanyCode
+            }
         ],
-    },
-    UI.Facets                      : [{
-        $Type  : 'UI.ReferenceFacet',
-        ID     : 'GeneratedFacet1',
-        Label  : 'General Information',
-        Target : '@UI.FieldGroup#GeneratedGroup1',
-    }, ]
-);
+        Facets                         : [{
+            $Type  : 'UI.ReferenceFacet',
+            ID     : 'GeneralInformation',
+            Label  : '{i18n>generalInformation}',
+            Target : '@UI.FieldGroup#GeneralInformation',
+        }],
+        FieldGroup #GeneralInformation : {
+            $Type : 'UI.FieldGroupType',
+            Data  : [
+                {
+                    $Type         : 'UI.DataField',
+                    Value         : NotificationText,
+                    ![@UI.Hidden] : IsActiveEntity
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : NotificationType
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : FunctionalLocation
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : CompanyCode
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : ReportedByUser
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : ReporterFullName
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : CreationDateTime
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : LastChangeDateTime
+                }
+            ]
+        }
+    }
+) {
+    MaintenanceNotification @(title : '{i18n>maintenanceNotification}');
+    NotificationType        @(title : '{i18n>notificationType}');
+    NotificationText        @(title : '{i18n>notificationText}');
+    FunctionalLocation      @(title : '{i18n>functionalLocation}');
+    CompanyCode             @(
+        title  : '{i18n>companyCode}',
+        Common : {
+            Text            : to_CompanyCode.CompanyCodeName,
+            TextArrangement : #TextOnly
+        }
+    );
+    ReportedByUser          @(title : '{i18n>reportedByUser}');
+    ReporterFullName        @(title : '{i18n>reporterFullName}');
+    CreationDateTime        @(title : '{i18n>creationDate}');
+    LastChangeDateTime      @(title : '{i18n>lastChangeDate}');
+    to_CompanyCode          @(
+        title  : '{i18n>companyCode}',
+        Common : {
+            Text            : to_CompanyCode.CompanyCodeName,
+            TextArrangement : #TextOnly,
+            ValueList       : {
+                Label           : '{i18n>companyCode}',
+                SearchSupported : true,
+                CollectionPath  : 'A_CompanyCode',
+                Parameters      : [
+                    {
+                        $Type             : 'Common.ValueListParameterInOut',
+                        LocalDataProperty : CompanyCode,
+                        ValueListProperty : 'CompanyCode'
+                    },
+                    {
+                        $Type             : 'Common.ValueListParameterInOut',
+                        LocalDataProperty : to_CompanyCode.CompanyCodeName,
+                        ValueListProperty : 'CompanyCodeName'
+                    }
+                ]
+            }
+        }
+    );
+};
