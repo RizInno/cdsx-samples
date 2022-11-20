@@ -1,0 +1,158 @@
+{
+	"meta": {
+		"creator": "cds-dk 6.1.5"
+	},
+	"$version": "2.0",
+	"definitions": {
+		"API_COMPANYCODE_SRV": {
+			"kind": "service",
+			"@cds.external": true,
+			"@m.IsDefaultEntityContainer": "true",
+			"@sap.message.scope.supported": "true",
+			"@sap.supported.formats": "atom json xlsx"
+		},
+		"API_COMPANYCODE_SRV.A_CompanyCode": {
+			"kind": "entity",
+			"@cds.persistence.skip": true,
+			"@sap.creatable": "false",
+			"@sap.updatable": "false",
+			"@sap.deletable": "false",
+			"@sap.content.version": "1",
+			"@sap.label": "Company Code",
+			"elements": {
+				"CompanyCode": {
+					"key": true,
+					"type": "cds.String",
+					"length": 4,
+					"@sap.display.format": "UpperCase",
+					"@sap.label": "Company Code"
+				},
+				"CompanyCodeName": {
+					"type": "cds.String",
+					"length": 25,
+					"@sap.label": "Company Name",
+					"@sap.quickinfo": "Name of Company Code or Company"
+				},
+				"CityName": {
+					"type": "cds.String",
+					"length": 25,
+					"@sap.label": "City"
+				},
+				"Country": {
+					"type": "cds.String",
+					"length": 3,
+					"@sap.display.format": "UpperCase",
+					"@sap.label": "Country/Region Key"
+				},
+				"Currency": {
+					"type": "cds.String",
+					"length": 5,
+					"@sap.label": "Currency",
+					"@sap.quickinfo": "Currency Key",
+					"@sap.semantics": "currency-code"
+				},
+				"Language": {
+					"type": "cds.String",
+					"length": 2,
+					"@sap.label": "Language Key"
+				},
+				"ChartOfAccounts": {
+					"type": "cds.String",
+					"length": 4,
+					"@sap.display.format": "UpperCase",
+					"@sap.label": "Chart of Accounts"
+				},
+				"FiscalYearVariant": {
+					"type": "cds.String",
+					"length": 2,
+					"@sap.display.format": "UpperCase",
+					"@sap.label": "Fiscal Year Variant"
+				},
+				"Company": {
+					"type": "cds.String",
+					"length": 6,
+					"@sap.display.format": "UpperCase",
+					"@sap.label": "Company"
+				},
+				"CreditControlArea": {
+					"type": "cds.String",
+					"length": 4,
+					"@sap.display.format": "UpperCase",
+					"@sap.label": "Credit control area"
+				},
+				"CountryChartOfAccounts": {
+					"type": "cds.String",
+					"length": 4,
+					"@sap.display.format": "UpperCase",
+					"@sap.label": "Alternative COA",
+					"@sap.quickinfo": "Alternative Chart of Accounts"
+				},
+				"FinancialManagementArea": {
+					"type": "cds.String",
+					"length": 4,
+					"@sap.display.format": "UpperCase",
+					"@sap.label": "FM Area",
+					"@sap.quickinfo": "Financial Management Area"
+				},
+				"AddressID": {
+					"type": "cds.String",
+					"length": 10,
+					"@sap.display.format": "UpperCase",
+					"@sap.label": "Address"
+				},
+				"TaxableEntity": {
+					"type": "cds.String",
+					"length": 4,
+					"@sap.display.format": "UpperCase",
+					"@sap.label": "Taxes on Sls/Purc.",
+					"@sap.quickinfo": "Taxes on Sales/Purchases Group"
+				},
+				"VATRegistration": {
+					"type": "cds.String",
+					"length": 20,
+					"@sap.display.format": "UpperCase",
+					"@sap.label": "VAT Registration No.",
+					"@sap.quickinfo": "VAT Registration Number"
+				},
+				"ExtendedWhldgTaxIsActive": {
+					"type": "cds.Boolean",
+					"@sap.display.format": "UpperCase",
+					"@sap.label": "Extended WTax Active",
+					"@sap.quickinfo": "Indicator: Extended Withholding Tax Active"
+				},
+				"ControllingArea": {
+					"type": "cds.String",
+					"length": 4,
+					"@sap.display.format": "UpperCase",
+					"@sap.label": "Controlling Area"
+				},
+				"FieldStatusVariant": {
+					"type": "cds.String",
+					"length": 4,
+					"@sap.display.format": "UpperCase",
+					"@sap.label": "Field status variant",
+					"@sap.quickinfo": "Field Status Variant"
+				},
+				"NonTaxableTransactionTaxCode": {
+					"type": "cds.String",
+					"length": 2,
+					"@sap.display.format": "UpperCase",
+					"@sap.label": "Output Tax Code",
+					"@sap.quickinfo": "Output Tax Code for Non-Taxable Transactions"
+				},
+				"DocDateIsUsedForTaxDetn": {
+					"type": "cds.Boolean",
+					"@sap.display.format": "UpperCase",
+					"@sap.label": "Tax Determ.with Doc.Date",
+					"@sap.quickinfo": "Indicator: Document Date As the Basis for Tax Determination"
+				},
+				"TaxRptgDateIsActive": {
+					"type": "cds.Boolean",
+					"@sap.display.format": "UpperCase",
+					"@sap.label": "Tax Date",
+					"@sap.quickinfo": "Tax Reporting Date Active in Documents"
+				}
+			}
+		}
+	}
+}
