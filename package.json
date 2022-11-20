@@ -6,6 +6,7 @@
 	"license": "UNLICENSED",
 	"private": true,
 	"dependencies": {
+		"@rizing/cds-extension": "^0.6.1",
 		"@sap/cds": "^6",
 		"express": "^4"
 	},
