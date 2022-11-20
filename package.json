@@ -6,17 +6,19 @@
 	"license": "UNLICENSED",
 	"private": true,
 	"dependencies": {
-		"@rizing/cds-extension": "^0.6.1",
+		"@rizing/cds-extension": "^0.6.2",
 		"@sap-cloud-sdk/http-client": "^2.11.0",
 		"@sap/cds": "^6",
 		"express": "^4"
 	},
 	"devDependencies": {
+		"@sap/ux-specification": "^1.102.12",
 		"dotenv": "^16.0.3",
 		"sqlite3": "^5.0.4"
 	},
 	"scripts": {
-		"start": "cds run"
+		"start": "cds run",
+		"watch-notification": "cds watch --open notification/webapp/index.html?sap-ui-xx-viewCache=false"
 	},
 	"engines": {
 		"node": "^16.15"
@@ -93,5 +95,8 @@
 				}
 			}
 		}
-	}
+	},
+	"sapux": [
+		"app/notification"
+	]
 }
