@@ -4,8 +4,10 @@ annotate service.MaintenanceNotification with @(
     Capabilities : {DeleteRestrictions : {Deletable : false}},
     UI           : {
         SelectionFields                : [
+            NotificationType,
             CompanyCode,
-            FunctionalLocation
+            FunctionalLocation,
+            ReportedByUser
         ],
         HeaderInfo                     : {
             TypeName       : '{i18n>maintenanceNotification}',
@@ -94,7 +96,29 @@ annotate service.MaintenanceNotification with @(
     }
 ) {
     MaintenanceNotification @(title : '{i18n>id}');
-    NotificationType        @(title : '{i18n>notificationType}');
+    NotificationType        @(
+        title  : '{i18n>notificationType}',
+        Common : {
+            Text            : to_NotificationType.NotificationType,
+            TextArrangement : #TextOnly,
+            ValueList       : {
+                Label           : '{i18n>notificationType}',
+                SearchSupported : true,
+                CollectionPath  : 'NotificationTypes',
+                Parameters      : [
+                    {
+                        $Type             : 'Common.ValueListParameterInOut',
+                        LocalDataProperty : NotificationType,
+                        ValueListProperty : 'ID'
+                    },
+                    {
+                        $Type             : 'Common.ValueListParameterDisplayOnly',
+                        ValueListProperty : 'NotificationType'
+                    }
+                ]
+            }
+        }
+    );
     NotificationText        @(title : '{i18n>maintenanceNotification}');
     FunctionalLocation      @(
         title  : '{i18n>functionalLocation}',

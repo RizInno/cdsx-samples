@@ -1,0 +1,33 @@
+﻿ID,NotificationType
+11,Malfunction Report  
+12,Activity Report     
+13,Work Request        
+4N,IE4N Activity       
+FA,Fleet Audit         
+FC,Fleet Campaign      
+FD,Fleet DVIR          
+FR,Fleet Admin Request 
+FT,Fleet Trouble Ticket
+I1,Real Estate Notif.  
+IN,Incident            
+L1,Bad Order / Defect  
+L2,Inspection / PM Due 
+LF,Lost and Found      
+M1,Maintenance Request 
+M2,Malfunction Report  
+M3,Activity Report     
+MF,Pool Request        
+OS,IHS notification    
+SC,Shift Comms Log     
+V2,Fleet Preventive    
+V3,Fleet OpAcctA.      
+V5,Fleet Calibration   
+V6,Fleet Project       
+V7,Fleet Capital       
+V8,Fleet Follow-On     
+VM,Flt Mnt.Rqst(use FT)
+Z1,Maintenance Request 
+Z2,Malfunction Report  
+Z3,Activity Report     
+Z4,Pole Test Treat Form
+Z5,Improvement Request 

@@ -1,4 +1,7 @@
-using {remote} from '../db/schema';
+using {
+    md,
+    remote
+} from '../db/schema';
 
 service NotificationService {
 
@@ -13,4 +16,6 @@ service NotificationService {
     @readonly
     entity A_CompanyCode               as projection on remote.A_CompanyCode;
 
+    @readonly
+    entity NotificationTypes           as projection on md.NotificationTypes;
 }

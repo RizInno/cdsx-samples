@@ -12,6 +12,8 @@ context remote {
             ReporterFullName        : String(80);
             CreationDateTime        : Timestamp;
             LastChangeDateTime      : Timestamp;
+            to_NotificationType     : Association to one md.NotificationTypes
+                                          on to_NotificationType.ID = $self.NotificationType;
             to_CompanyCode          : Association to one A_CompanyCode
                                           on to_CompanyCode.CompanyCode = $self.CompanyCode;
             to_FunctionalLocation   : Association to one FunctionalLocation
@@ -63,6 +65,15 @@ context remote {
     entity A_CompanyCode {
         key CompanyCode     : String(4);
             CompanyCodeName : String(25);
+    }
+
+}
+
+context md {
+
+    entity NotificationTypes {
+        key ID               : String(2);
+            NotificationType : String(20);
     }
 
 }
