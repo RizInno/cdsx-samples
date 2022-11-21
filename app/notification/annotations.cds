@@ -3,6 +3,7 @@ using NotificationService as service from '../../srv/notification';
 annotate service.MaintenanceNotification with @(
     Capabilities : {DeleteRestrictions : {Deletable : false}},
     UI           : {
+        SelectionFields                : [CompanyCode],
         HeaderInfo                     : {
             TypeName       : '{i18n>maintenanceNotification}',
             TypeNamePlural : '{i18n>maintenanceNotifications}',
@@ -16,11 +17,11 @@ annotate service.MaintenanceNotification with @(
             },
             {
                 $Type : 'UI.DataField',
-                Value : NotificationType
+                Value : NotificationText
             },
             {
                 $Type : 'UI.DataField',
-                Value : NotificationText
+                Value : NotificationType
             },
             {
                 $Type : 'UI.DataField',
@@ -85,17 +86,6 @@ annotate service.MaintenanceNotification with @(
         title  : '{i18n>companyCode}',
         Common : {
             Text            : to_CompanyCode.CompanyCodeName,
-            TextArrangement : #TextOnly
-        }
-    );
-    ReportedByUser          @(title : '{i18n>reportedByUser}');
-    ReporterFullName        @(title : '{i18n>reporterFullName}');
-    CreationDateTime        @(title : '{i18n>creationDate}');
-    LastChangeDateTime      @(title : '{i18n>lastChangeDate}');
-    to_CompanyCode          @(
-        title  : '{i18n>companyCode}',
-        Common : {
-            Text            : to_CompanyCode.CompanyCodeName,
             TextArrangement : #TextOnly,
             ValueList       : {
                 Label           : '{i18n>companyCode}',
@@ -108,12 +98,15 @@ annotate service.MaintenanceNotification with @(
                         ValueListProperty : 'CompanyCode'
                     },
                     {
-                        $Type             : 'Common.ValueListParameterInOut',
-                        LocalDataProperty : to_CompanyCode.CompanyCodeName,
+                        $Type             : 'Common.ValueListParameterDisplayOnly',
                         ValueListProperty : 'CompanyCodeName'
                     }
                 ]
             }
         }
     );
+    ReportedByUser          @(title : '{i18n>reportedByUser}');
+    ReporterFullName        @(title : '{i18n>reporterFullName}');
+    CreationDateTime        @(title : '{i18n>creationDate}');
+    LastChangeDateTime      @(title : '{i18n>lastChangeDate}');
 };
