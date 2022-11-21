@@ -3,7 +3,10 @@ using NotificationService as service from '../../srv/notification';
 annotate service.MaintenanceNotification with @(
     Capabilities : {DeleteRestrictions : {Deletable : false}},
     UI           : {
-        SelectionFields                : [CompanyCode],
+        SelectionFields                : [
+            CompanyCode,
+            FunctionalLocation
+        ],
         HeaderInfo                     : {
             TypeName       : '{i18n>maintenanceNotification}',
             TypeNamePlural : '{i18n>maintenanceNotifications}',
@@ -30,6 +33,18 @@ annotate service.MaintenanceNotification with @(
             {
                 $Type : 'UI.DataField',
                 Value : CompanyCode
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : ReportedByUser
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CreationDateTime
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : LastChangeDateTime
             }
         ],
         Facets                         : [{
@@ -78,12 +93,34 @@ annotate service.MaintenanceNotification with @(
         }
     }
 ) {
-    MaintenanceNotification @(title : '{i18n>maintenanceNotification}');
+    MaintenanceNotification @(title : '{i18n>id}');
     NotificationType        @(title : '{i18n>notificationType}');
-    NotificationText        @(title : '{i18n>notificationText}');
-    FunctionalLocation      @(title : '{i18n>functionalLocation}');
+    NotificationText        @(title : '{i18n>maintenanceNotification}');
+    FunctionalLocation      @(
+        title  : '{i18n>functionalLocation}',
+        Common : {
+            Text            : to_FunctionalLocation.FunctionalLocationName,
+            TextArrangement : #TextOnly,
+            ValueList       : {
+                Label           : '{i18n>functionalLocation}',
+                SearchSupported : true,
+                CollectionPath  : 'FunctionalLocation',
+                Parameters      : [
+                    {
+                        $Type             : 'Common.ValueListParameterInOut',
+                        LocalDataProperty : FunctionalLocation,
+                        ValueListProperty : 'FunctionalLocationLabelName'
+                    },
+                    {
+                        $Type             : 'Common.ValueListParameterDisplayOnly',
+                        ValueListProperty : 'FunctionalLocationName'
+                    }
+                ]
+            }
+        }
+    );
     CompanyCode             @(
-        title  : '{i18n>companyCode}',
+        title  : '{i18n>company}',
         Common : {
             Text            : to_CompanyCode.CompanyCodeName,
             TextArrangement : #TextOnly,
@@ -109,4 +146,14 @@ annotate service.MaintenanceNotification with @(
     ReporterFullName        @(title : '{i18n>reporterFullName}');
     CreationDateTime        @(title : '{i18n>creationDate}');
     LastChangeDateTime      @(title : '{i18n>lastChangeDate}');
+};
+
+annotate service.A_CompanyCode with {
+    CompanyCode     @(title : '{i18n>companyCode}');
+    CompanyCodeName @(title : '{i18n>company}');
+};
+
+annotate service.FunctionalLocation with {
+    FunctionalLocationLabelName @(title : '{i18n>functionalLocation}');
+    FunctionalLocationName      @(title : '{i18n>functionalLocationName}');
 };

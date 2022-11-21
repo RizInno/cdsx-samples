@@ -14,6 +14,8 @@ context remote {
             LastChangeDateTime      : Timestamp;
             to_CompanyCode          : Association to one A_CompanyCode
                                           on to_CompanyCode.CompanyCode = $self.CompanyCode;
+            to_FunctionalLocation   : Association to one FunctionalLocation
+                                          on to_FunctionalLocation.FunctionalLocationLabelName = $self.FunctionalLocation;
             to_Item                 : Composition of many MaintenanceNotificationItem
                                           on to_Item.MaintenanceNotification = $self.MaintenanceNotification;
     }
