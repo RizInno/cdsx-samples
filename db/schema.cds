@@ -18,6 +18,8 @@ context remote {
                                           on to_CompanyCode.CompanyCode = $self.CompanyCode;
             to_FunctionalLocation   : Association to one FunctionalLocation
                                           on to_FunctionalLocation.FunctionalLocationLabelName = $self.FunctionalLocation;
+            to_Partner              : Composition of many MaintenanceNotificationPartner
+                                          on to_Partner.MaintenanceNotification = $self.MaintenanceNotification;
             to_Item                 : Composition of many MaintenanceNotificationItem
                                           on to_Item.MaintenanceNotification = $self.MaintenanceNotification;
     }
@@ -38,6 +40,17 @@ context remote {
             MaintNotifItemCreationDateTime : Timestamp;
             MaintNotifItemChangedDateTime  : Timestamp;
             to_Notif                       : Association to one MaintenanceNotification;
+    }
+
+    @rizing.api : 'API_MAINTNOTIFICATION'
+    entity MaintenanceNotificationPartner {
+        key MaintenanceNotification       : String(12);
+        key NotificationPartnerObjectNmbr : String(6);
+        key PartnerFunction               : String(2);
+            Partner                       : String(12);
+            to_PartnerFunction            : Association to one md.PartnerFunctions
+                                                on to_PartnerFunction.ID = $self.PartnerFunction;
+            to_Notif                      : Association to one MaintenanceNotification;
     }
 
     @rizing.api : 'API_EQUIPMENT'
@@ -74,6 +87,11 @@ context md {
     entity NotificationTypes {
         key ID               : String(2);
             NotificationType : String(20);
+    }
+
+    entity PartnerFunctions {
+        key ID              : String(2);
+            PartnerFunction : String(20);
     }
 
 }
