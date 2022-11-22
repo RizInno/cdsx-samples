@@ -60,7 +60,8 @@
 				"sap.m": {},
 				"sap.ui.core": {},
 				"sap.ushell": {},
-				"sap.fe.templates": {}
+				"sap.fe.templates": {},
+				"sap.f": {}
 			}
 		},
 		"contentDensities": {
@@ -93,22 +94,37 @@
 			"css": []
 		},
 		"routing": {
-			"config": {},
+			"config": {
+				"routerClass": "sap.f.routing.Router",
+				"flexibleColumnLayout": {
+					"defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
+					"defaultThreeColumnLayoutType": "ThreeColumnsMidExpanded"
+				}
+			},
 			"routes": [
 				{
 					"pattern": ":?query:",
 					"name": "MaintenanceNotificationList",
-					"target": "MaintenanceNotificationList"
+					"target": [
+						"MaintenanceNotificationList"
+					]
 				},
 				{
 					"pattern": "MaintenanceNotification({key}):?query:",
 					"name": "MaintenanceNotificationObjectPage",
-					"target": "MaintenanceNotificationObjectPage"
+					"target": [
+						"MaintenanceNotificationList",
+						"MaintenanceNotificationObjectPage"
+					]
 				},
 				{
 					"pattern": "MaintenanceNotification({key})/to_Item({key2}):?query:",
 					"name": "MaintenanceNotificationItemObjectPage",
-					"target": "MaintenanceNotificationItemObjectPage"
+					"target": [
+						"MaintenanceNotificationList",
+						"MaintenanceNotificationObjectPage",
+						"MaintenanceNotificationItemObjectPage"
+					]
 				}
 			],
 			"targets": {
@@ -128,7 +144,9 @@
 								}
 							}
 						}
-					}
+					},
+					"controlAggregation": "beginColumnPages",
+					"contextPattern": ""
 				},
 				"MaintenanceNotificationObjectPage": {
 					"type": "Component",
@@ -146,7 +164,9 @@
 								}
 							}
 						}
-					}
+					},
+					"controlAggregation": "midColumnPages",
+					"contextPattern": "/MaintenanceNotification({key})"
 				},
 				"MaintenanceNotificationItemObjectPage": {
 					"type": "Component",
@@ -157,9 +177,17 @@
 							"editableHeaderContent": false,
 							"entitySet": "MaintenanceNotificationItem"
 						}
-					}
+					},
+					"controlAggregation": "endColumnPages",
+					"contextPattern": "/MaintenanceNotification({key})/to_Item({key2})"
 				}
 			}
+		},
+		"rootView": {
+			"viewName": "sap.fe.templates.RootContainer.view.Fcl",
+			"type": "XML",
+			"async": true,
+			"id": "appRootView"
 		}
 	},
 	"sap.fiori": {

@@ -1,5 +1,6 @@
 using NotificationService as service from '../../srv/notification';
 
+
 annotate service.MaintenanceNotification with @(
     Capabilities : {DeleteRestrictions : {Deletable : false}},
     UI           : {
@@ -17,12 +18,14 @@ annotate service.MaintenanceNotification with @(
         },
         LineItem                       : [
             {
-                $Type : 'UI.DataField',
-                Value : MaintenanceNotification
+                $Type             : 'UI.DataField',
+                Value             : MaintenanceNotification,
+                ![@UI.Importance] : #High
             },
             {
-                $Type : 'UI.DataField',
-                Value : NotificationText
+                $Type             : 'UI.DataField',
+                Value             : NotificationText,
+                ![@UI.Importance] : #High
             },
             {
                 $Type : 'UI.DataField',
@@ -184,6 +187,7 @@ annotate service.MaintenanceNotification with @(
     LastChangeDateTime      @(title : '{i18n>lastChangeDate}');
 };
 
+
 annotate service.MaintenanceNotificationPartner with @(UI : {
     HeaderInfo : {
         TypeName       : '{i18n>partner}',
@@ -209,23 +213,28 @@ annotate service.MaintenanceNotificationPartner with @(UI : {
             TextArrangement : #TextOnly
         }
     );
-    Partner                       @(title : '{i18n>partner}')
+    Partner                       @(title : '{i18n>partner}');
+    to_Notif                      @(UI : {Hidden});
 };
 
 
 annotate service.MaintenanceNotificationItem with @(UI : {
     HeaderInfo : {
         TypeName       : '{i18n>item}',
-        TypeNamePlural : '{i18n>items}'
+        TypeNamePlural : '{i18n>items}',
+        Title          : {Value : MaintNotifItemText},
+        Description    : {Value : MaintenanceNotificationItem}
     },
     LineItem   : [
         {
-            $Type : 'UI.DataField',
-            Value : MaintenanceNotificationItem
+            $Type             : 'UI.DataField',
+            Value             : MaintenanceNotificationItem,
+            ![@UI.Importance] : #High
         },
         {
-            $Type : 'UI.DataField',
-            Value : MaintNotifItemText
+            $Type             : 'UI.DataField',
+            Value             : MaintNotifItemText,
+            ![@UI.Importance] : #High
         },
         {
             $Type : 'UI.DataField',
@@ -251,10 +260,22 @@ annotate service.MaintenanceNotificationItem with @(UI : {
             $Type : 'UI.DataField',
             Value : MaintNotifItemChangedDateTime
         }
+    ],
+    Facets     : [
+        {
+            $Type  : 'UI.ReferenceFacet',
+            Target : 'to_ItemActivity/@UI.LineItem',
+            Label  : '{i18n>activities}'
+        },
+        {
+            $Type  : 'UI.ReferenceFacet',
+            Target : 'to_ItemCause/@UI.LineItem',
+            Label  : '{i18n>causes}'
+        }
     ]
 }) {
     MaintenanceNotification        @(UI : {Hidden});
-    MaintenanceNotificationItem    @(title : '{i18n>item}');
+    MaintenanceNotificationItem    @(title : '{i18n>number}');
     MaintNotifItemText             @(title : '{i18n>description}');
     MaintNotifDamageCodeGroupName  @(UI : {Hidden});
     MaintNotifDamageCodeGroup      @(
@@ -294,10 +315,156 @@ annotate service.MaintenanceNotificationItem with @(UI : {
 };
 
 
+annotate service.MaintNotificationItemActivity with @(UI : {
+    HeaderInfo : {
+        TypeName       : '{i18n>activity}',
+        TypeNamePlural : '{i18n>activities}'
+    },
+    LineItem   : [
+        {
+            $Type             : 'UI.DataField',
+            Value             : MaintNotificationActivity,
+            ![@UI.Importance] : #High
+        },
+        {
+            $Type             : 'UI.DataField',
+            Value             : MaintNotifActyTxt,
+            ![@UI.Importance] : #High
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : MaintNotifActivityCodeGroup
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : MaintNotificationActivityCode
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : MaintNotifItmActyStrtDateTime
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : MaintNotifItemActyEndDateTime
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : MaintNotifItemActyCrtnDateTime
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : MaintNotifItemActyChgdDateTime
+        }
+    ]
+}) {
+    MaintenanceNotification        @(UI : {Hidden});
+    MaintenanceNotificationItem    @(UI : {Hidden});
+    MaintNotifActivitySortNumber   @(UI : {Hidden});
+    MaintNotificationActivity      @(title : '{i18n>number}');
+    MaintNotifActyTxt              @(title : '{i18n>description}');
+    NotifActivityCodeGroupText     @(UI : {Hidden});
+    MaintNotifActivityCodeGroup    @(
+        title  : '{i18n>activityGroup}',
+        Common : {
+            Text            : NotifActivityCodeGroupText,
+            TextArrangement : #TextOnly
+        }
+    );
+    NotifActivityCodeText          @(UI : {Hidden});
+    MaintNotificationActivityCode  @(
+        title  : '{i18n>activity}',
+        Common : {
+            Text            : NotifActivityCodeText,
+            TextArrangement : #TextOnly
+        }
+    );
+    MaintNotifItmActyStrtDateTime  @(title : '{i18n>startDate}');
+    MaintNotifItemActyEndDateTime  @(title : '{i18n>endDate}');
+    MaintNotifItemActyCrtnDateTime @(title : '{i18n>creationDate}');
+    MaintNotifItemActyChgdDateTime @(title : '{i18n>lastChangeDate}');
+    to_Item                        @(UI : {Hidden});
+    to_Notif                       @(UI : {Hidden});
+};
+
+
+annotate service.MaintNotificationItemCause with @(UI : {
+    HeaderInfo : {
+        TypeName       : '{i18n>cause}',
+        TypeNamePlural : '{i18n>causes}'
+    },
+    LineItem   : [
+        {
+            $Type             : 'UI.DataField',
+            Value             : MaintenanceNotificationCause,
+            ![@UI.Importance] : #High
+        },
+        {
+            $Type             : 'UI.DataField',
+            Value             : MaintNotifCauseText,
+            ![@UI.Importance] : #High
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : MaintNotifCauseCodeGroup
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : MaintNotificationCauseCode
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : MaintNotificationRootCause
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : MaintNotifItmCauseCrtnDateTime
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : MaintNotifItmCauseChgdDateTime
+        }
+    ]
+}) {
+    MaintenanceNotification        @(UI : {Hidden});
+    MaintenanceNotificationItem    @(UI : {Hidden});
+    MaintenanceNotificationCause   @(title : '{i18n>number}');
+    MaintNotifCauseText            @(title : '{i18n>description}');
+    MaintNotifCauseCodeGroupName   @(UI : {Hidden});
+    MaintNotifCauseCodeGroup       @(
+        title  : '{i18n>causeGroup}',
+        Common : {
+            Text            : MaintNotifCauseCodeGroupName,
+            TextArrangement : #TextOnly
+        }
+    );
+    MaintNotificationCauseCodeName @(UI : {Hidden});
+    MaintNotificationCauseCode     @(
+        title  : '{i18n>cause}',
+        Common : {
+            Text            : MaintNotificationCauseCodeName,
+            TextArrangement : #TextOnly
+        }
+    );
+    MaintNotificationRootCauseText @(UI : {Hidden});
+    MaintNotificationRootCause     @(
+        title  : '{i18n>rootCause}',
+        Common : {
+            Text            : MaintNotificationRootCauseText,
+            TextArrangement : #TextOnly
+        }
+    );
+    MaintNotifItmCauseCrtnDateTime @(title : '{i18n>creationDate}');
+    MaintNotifItmCauseChgdDateTime @(title : '{i18n>lastChangeDate}');
+    to_Item                        @(UI : {Hidden});
+    to_Notif                       @(UI : {Hidden});
+};
+
+
 annotate service.A_CompanyCode with {
     CompanyCode     @(title : '{i18n>companyCode}');
     CompanyCodeName @(title : '{i18n>company}');
 };
+
 
 annotate service.FunctionalLocation with {
     FunctionalLocationLabelName @(title : '{i18n>functionalLocation}');

@@ -9,6 +9,8 @@ service NotificationService {
     entity MaintenanceNotification        as projection on remote.MaintenanceNotification;
 
     entity MaintenanceNotificationItem    as projection on remote.MaintenanceNotificationItem;
+    entity MaintNotificationItemActivity  as projection on remote.MaintNotificationItemActivity;
+    entity MaintNotificationItemCause     as projection on remote.MaintNotificationItemCause;
     entity MaintenanceNotificationPartner as projection on remote.MaintenanceNotificationPartner;
 
     @readonly
