@@ -1,14 +1,17 @@
 {
 	"name": "cdsx-samples",
 	"version": "1.0.0",
-	"description": "A simple CAP project.",
-	"repository": "<Add your repository here>",
-	"license": "UNLICENSED",
+	"description": "A sample CAP project using CDSX.",
+	"repository": "https://github.com/RizInno/cdsx-samples",
+	"license": "MIT",
 	"private": true,
+	"author": {
+		"name": "Jhodel Cailan"
+	},
 	"dependencies": {
-		"@rizing/cds-extension": "^0.7.3",
-		"@sap-cloud-sdk/http-client": "^2.11.0",
-		"@sap/cds": "^6",
+		"@rizing/cds-extension": "^0.7.61",
+		"@sap-cloud-sdk/http-client": "^3.1.1",
+		"@sap/cds": "^6.8.1",
 		"express": "^4"
 	},
 	"devDependencies": {
@@ -20,9 +23,6 @@
 		"start": "cds run",
 		"bump": "npm i @rizing/cds-extension@latest",
 		"watch-notification": "cds watch --open notification/webapp/index.html?sap-ui-xx-viewCache=false"
-	},
-	"engines": {
-		"node": "^16.15"
 	},
 	"cds": {
 		"features": {
