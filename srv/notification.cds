@@ -24,4 +24,5 @@ service NotificationService {
 
     @readonly
     entity PartnerFunctions               as projection on md.PartnerFunctions;
+
 }

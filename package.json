@@ -72,6 +72,17 @@
 						"password": "{{s4h_password}}"
 					}
 				}
+			},
+			"API_BUSINESS_PARTNER": {
+				"kind": "odata-v2",
+				"model": "srv/external/API_BUSINESS_PARTNER",
+				"[backend]": {
+					"credentials": {
+						"url": "{{s4h_hostname}}/sap/opu/odata/sap/API_BUSINESS_PARTNER",
+						"username": "{{s4h_username}}",
+						"password": "{{s4h_password}}"
+					}
+				}
 			}
 		}
 	},
