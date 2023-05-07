@@ -15,12 +15,13 @@
 		"express": "^4"
 	},
 	"devDependencies": {
-		"@sap/ux-specification": "^1.102.12",
+		"@sap/ux-specification": "^1.108.4",
 		"dotenv": "^16.0.3",
 		"sqlite3": "^5.0.4"
 	},
 	"scripts": {
-		"start": "cds run"
+		"start": "cds run",
+		"watch-bupa": "cds watch --open bupa/webapp/index.html?sap-ui-xx-viewCache=false"
 	},
 	"cds": {
 		"features": {
@@ -40,5 +41,7 @@
 			}
 		}
 	},
-	"sapux": []
+	"sapux": [
+		"app/bupa"
+	]
 }
