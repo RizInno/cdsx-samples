@@ -1,25 +1,39 @@
-# Getting Started
+# Rizing CDSX Sample
 
-Welcome to your new project.
+The CAP project in this repository is used to showcase the basic set up in using the **Rizing CDSX** ([@rizing/cds-extension](https://www.npmjs.com/package/@rizing/cds-extension)) module.
 
-It contains these folders and files, following our recommended project layout:
+## INTRODUCTION
 
-File or Folder | Purpose
----------|----------
-`app/` | content for UI frontends goes here
-`db/` | your domain models and data go here
-`srv/` | your service models and code go here
-`package.json` | project metadata and configuration
-`readme.md` | this getting started guide
+The CAP project demostrate how **CDSX** can be used to enable easy consumption of an external service such as SAP standard OData API service from S/4HANA on-premise system. The OData API used in this sample project is `API_BUSINESS_PARTNER`. The project can be run using mock data or connected to a live S/4HANA system. Just note that this project was tested on S/4HANA on-premise 2021 FPS 02 and using VS Code IDE.
 
+## GETTING STARTED
 
-## Next Steps
+- Install dependencies (one-time set up)
 
-- Open a new terminal and run `cds watch` 
-- (in VS Code simply choose _**Terminal** > Run Task > cds watch_)
-- Start adding content, for example, a [db/schema.cds](db/schema.cds).
+```shell
+> npm install
+```
 
+- Run the app with mocked external service
 
-## Learn More
+```shell
+> cds watch
+```
 
-Learn more at https://cap.cloud.sap/docs/get-started/.
+- Run the app connected to a live S/4HANA on-premise system
+
+```shell
+> cds watch --profile backend
+```
+
+> **NOTE**: To use the `backend` profile, you need to set up the environment variables by creating a `.env` file and placing it at the root of this project directory. Use the template is provided below.
+
+```properties
+s4h_hostname=<s4hana-hostname>
+s4h_username=<username>
+s4h_password=<password>
+```
+
+## LICENSE
+
+This project is licensed under the MIT License.  See [LICENSE](LICENSE) file.
