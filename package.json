@@ -17,11 +17,12 @@
 	"devDependencies": {
 		"@sap/ux-specification": "^1.108.4",
 		"dotenv": "^16.0.3",
+		"patch-package": "^7.0.0",
 		"sqlite3": "^5.0.4"
 	},
 	"scripts": {
-		"start": "cds run",
-		"watch-bupa": "cds watch --open bupa/webapp/index.html?sap-ui-xx-viewCache=false"
+		"postinstall": "patch-package",
+		"start": "cds run"
 	},
 	"cds": {
 		"features": {
