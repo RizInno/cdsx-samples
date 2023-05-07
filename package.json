@@ -20,59 +20,13 @@
 		"sqlite3": "^5.0.4"
 	},
 	"scripts": {
-		"start": "cds run",
-		"bump": "npm i @rizing/cds-extension@latest",
-		"watch-notification": "cds watch --open notification/webapp/index.html?sap-ui-xx-viewCache=false"
+		"start": "cds run"
 	},
 	"cds": {
 		"features": {
 			"fetch_csrf": true
 		},
 		"requires": {
-			"API_EQUIPMENT": {
-				"kind": "odata-v2",
-				"model": "srv/external/API_EQUIPMENT",
-				"[backend]": {
-					"credentials": {
-						"url": "{{s4h_hostname}}/sap/opu/odata/sap/API_EQUIPMENT",
-						"username": "{{s4h_username}}",
-						"password": "{{s4h_password}}"
-					}
-				}
-			},
-			"API_MAINTNOTIFICATION": {
-				"kind": "odata-v2",
-				"model": "srv/external/API_MAINTNOTIFICATION",
-				"[backend]": {
-					"credentials": {
-						"url": "{{s4h_hostname}}/sap/opu/odata/sap/API_MAINTNOTIFICATION",
-						"username": "{{s4h_username}}",
-						"password": "{{s4h_password}}"
-					}
-				}
-			},
-			"API_FUNCTIONALLOCATION": {
-				"kind": "odata-v2",
-				"model": "srv/external/API_FUNCTIONALLOCATION",
-				"[backend]": {
-					"credentials": {
-						"url": "{{s4h_hostname}}/sap/opu/odata/sap/API_FUNCTIONALLOCATION",
-						"username": "{{s4h_username}}",
-						"password": "{{s4h_password}}"
-					}
-				}
-			},
-			"API_COMPANYCODE_SRV": {
-				"kind": "odata-v2",
-				"model": "srv/external/API_COMPANYCODE_SRV",
-				"[backend]": {
-					"credentials": {
-						"url": "{{s4h_hostname}}/sap/opu/odata/sap/API_COMPANYCODE_SRV",
-						"username": "{{s4h_username}}",
-						"password": "{{s4h_password}}"
-					}
-				}
-			},
 			"API_BUSINESS_PARTNER": {
 				"kind": "odata-v2",
 				"model": "srv/external/API_BUSINESS_PARTNER",
@@ -86,7 +40,5 @@
 			}
 		}
 	},
-	"sapux": [
-		"app/notification"
-	]
+	"sapux": []
 }
