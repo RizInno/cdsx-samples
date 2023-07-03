@@ -9,7 +9,7 @@
 		"name": "Jhodel Cailan"
 	},
 	"dependencies": {
-		"@rizing/cds-extension": "^0.7.61",
+		"@rizing/cds-extension": "^0.7.63",
 		"@sap-cloud-sdk/http-client": "^3.1.1",
 		"@sap/cds": "^6.8.1",
 		"express": "^4"
